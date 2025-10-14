@@ -1,0 +1,5 @@
+E1200,Ahmed,ahmed_1999@gmail.com,Alexandria,01088877345
+E1201,mohamed,mo26@gmail.com,Alexandria,01270958639
+E1203,khaled,kh1hh@gmail.com,Cairo,01151657616
+E1300,John,john@email.com,Cairo,01122233344
+E1324,Asser,Asser@email.com,Cairo,01123456334
