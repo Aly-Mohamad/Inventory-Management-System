@@ -1,0 +1,3 @@
+P2394,Laptop,Apple,TechSupplier,10,1500.0
+P1289,Mouse,Logitech,TechSupplier,50,25.5
+P9999,Keyboard,HP,TechSupplier,20,45.5
