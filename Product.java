@@ -14,15 +14,6 @@ public class Product {
         this.quantity = quantity;
         this.price = price;
     }
-    
-    public String lineRepresentation() {
-        return productID + "," + productName + "," + manufacturerName + "," + supplierName + "," + quantity + "," + price;
-    }
-
-    public String getSearchKey() {
-        return getProductID();
-    }
-    
 
     public int getQuantity() {
         return quantity;
@@ -30,6 +21,14 @@ public class Product {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+    }
+
+    public String lineRepresentation() {
+        return productID + "," + productName + "," + manufacturerName + "," + supplierName + "," + quantity + "," + price;
+    }
+
+    public String getSearchKey() {
+        return getProductID();
     }
 
     public String getProductID() {
