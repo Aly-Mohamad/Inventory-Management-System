@@ -74,7 +74,7 @@ public void deleteRecord(String key) {
         }}
     
 public void saveToFile() {
-        try (PrintWriter writer = new PrintWriter(new FileWriter(filename))) {
+        try (PrintWriter writer = new PrintWriter(new FileWriter(filename , true))) {
             for (EmployeeUser employee : records) {
                 writer.println(employee.LineRepresentation());
             }
