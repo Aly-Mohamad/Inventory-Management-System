@@ -1,4 +1,4 @@
-public class Product {
+public class Product implements Record{
     private String productID;
     private String productName;
     private String manufacturerName;

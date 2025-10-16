@@ -1,7 +1,7 @@
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-public class CustomerProduct {
+public class CustomerProduct implements Record{
     private String customerSSN;
     private String productID;
     private LocalDate purchaseDate;
