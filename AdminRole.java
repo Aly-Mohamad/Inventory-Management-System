@@ -8,6 +8,15 @@ public class AdminRole {
         database.readFromFile();
     }
 
+    public EmployeeUserDatabase getDatabase() {
+        return database;
+    }
+
+    public void setDatabase(EmployeeUserDatabase database) {
+        this.database = database;
+    }       
+    
+    
     public void addEmployee(String employeeId,String name,String email,String address,String phoneNumber){
         EmployeeUser employeeUser = new EmployeeUser(employeeId,name,email,address,phoneNumber);
         database.insertRecord(employeeUser);

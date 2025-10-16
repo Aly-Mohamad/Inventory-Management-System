@@ -13,12 +13,21 @@ public class EmployeeRole {
         customerProductDatabase.readFromFile();
     }
 
+
     public ProductDatabase getProductDatabase() {
         return productDatabase;
     }
 
     public CustomerProductDatabase getCustomerProductDatabase() {
         return customerProductDatabase;
+    }
+
+    public void setProductDatabase(ProductDatabase productDatabase) {
+        this.productDatabase = productDatabase;
+    }
+
+    public void setCustomerProductDatabase(CustomerProductDatabase customerProductDatabase) {
+        this.customerProductDatabase = customerProductDatabase;
     }
 
     public void addProduct(String productId,String productName,String manufacturerName,String supplierName,int quantity,float price) {
