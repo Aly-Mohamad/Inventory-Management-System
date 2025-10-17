@@ -1,4 +1,4 @@
 public interface Record {
-    String lineRepresentation();
-    String getSearchKey();
+    public String lineRepresentation();
+    public String getSearchKey();
 }

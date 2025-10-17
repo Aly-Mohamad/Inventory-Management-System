@@ -1,7 +1,7 @@
 import java.util.*;
 import java.io.*;
 
-public class EmployeeUserDatabase{
+public class EmployeeUserDatabase extends Database<EmployeeUser>{
     private ArrayList<EmployeeUser> records;
     private String filename;
 
@@ -10,6 +10,7 @@ public class EmployeeUserDatabase{
         this.records = new ArrayList<>();
     }
 
+    @Override
     public void readFromFile() {
         try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
             String line;
@@ -26,6 +27,7 @@ public class EmployeeUserDatabase{
         }  
     }
 
+    @Override
     public EmployeeUser createRecordFrom(String line) {
         try {
             String[] parts = line.split(",");
@@ -38,9 +40,12 @@ public class EmployeeUserDatabase{
         return null;
     }
 
+    @Override
     public ArrayList<EmployeeUser> returnAllRecords() {
-        return records; }
+        return records; 
+    }
 
+    @Override
     public boolean contains(String key) {
         for (EmployeeUser employee : records) {
             if (employee.getSearchKey().equals(key)) {
@@ -50,6 +55,7 @@ public class EmployeeUserDatabase{
         return false;
     }
 
+    @Override
     public EmployeeUser getRecord(String key) {
         for (EmployeeUser employee : records) {
             if (employee.getSearchKey().equals(key)) {
@@ -59,12 +65,14 @@ public class EmployeeUserDatabase{
         return null;
     }
 
+    @Override
     public void insertRecord(EmployeeUser record) {
         if (record != null && !contains(record.getSearchKey())) {
             records.add(record);
         }
     }
 
+    @Override
     public void deleteRecord(String key) {
         EmployeeUser Remove = null;
         for (EmployeeUser employee : records) {
@@ -77,7 +85,8 @@ public class EmployeeUserDatabase{
             records.remove(Remove);
         }
     }
-        
+    
+    @Override
     public void saveToFile() {
         try (PrintWriter writer = new PrintWriter(new FileWriter(filename , true))) {
             for (EmployeeUser employee : records) {

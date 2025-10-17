@@ -1,7 +1,7 @@
 import java.util.*;
 import java.io.*;
 
-public class ProductDatabase {
+public class ProductDatabase extends Database<Product>{
     private ArrayList<Product> records;
     private String filename;
 
@@ -10,6 +10,7 @@ public class ProductDatabase {
         this.records = new ArrayList<>();
     }
 
+    @Override
     public void readFromFile() {
         try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
             String line;
@@ -26,6 +27,7 @@ public class ProductDatabase {
         }
     }
 
+    @Override
     public Product createRecordFrom(String line) {
         try {
             String[] parts = line.split(",");
@@ -45,10 +47,12 @@ public class ProductDatabase {
         return null;
     }
 
+    @Override
     public ArrayList<Product> returnAllRecords() {
         return records;
     }
 
+    @Override
     public boolean contains(String key) {
         for (Product product : records) {
             if (product.getSearchKey().equals(key)) {
@@ -58,6 +62,7 @@ public class ProductDatabase {
         return false;
     }
 
+    @Override
     public Product getRecord(String key) {
         for (Product product : records) {
             if (product.getSearchKey().equals(key)) {
@@ -67,12 +72,14 @@ public class ProductDatabase {
         return null;
     }
 
+    @Override
     public void insertRecord(Product record) {
         if (record != null && !contains(record.getSearchKey())) {
             records.add(record);
         }
     }
 
+    @Override
     public void deleteRecord(String key) {
         Product remove = null;
         for (Product product : records) {
@@ -86,6 +93,7 @@ public class ProductDatabase {
         }
     }
 
+    @Override
     public void saveToFile() {
         try (PrintWriter writer = new PrintWriter(new FileWriter(filename))) {
             for (Product product : records) {

@@ -2,7 +2,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
-public class EmployeeRole {
+public class EmployeeRole implements Role{
     private ProductDatabase productDatabase;
     private CustomerProductDatabase customerProductDatabase;
 
@@ -89,18 +89,9 @@ public class EmployeeRole {
         return false;
     }
 
+    @Override
     public void logout(){
         productDatabase.saveToFile();
         customerProductDatabase.saveToFile();
     }
-
-    public static void main(String[] args) {
-        EmployeeRole employeeRole = new EmployeeRole();
-        employeeRole.addProduct("1234567", "Product 1", "Manufacturer 1", "Supplier 1", 10, 100);
-        employeeRole.purchaseProduct("1234567890", "1234567890", LocalDate.now());
-        // employeeRole.returnProduct("1234567890", "1234567890", LocalDate.now(), LocalDate.now().plusDays(10));
-        employeeRole.applyPayment("1234567890", LocalDate.now());
-        employeeRole.logout();
-    }
-
 }

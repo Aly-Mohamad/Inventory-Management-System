@@ -15,11 +15,12 @@ public class CustomerProduct implements Record{
         this.paid = false;
     } 
     
-    
+    @Override
     public String lineRepresentation(){
         return getSearchKey() + "," + this.paid;
     }
     
+    @Override
     public String getSearchKey(){
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         return this.customerSSN + "," + this.productID + "," + this.purchaseDate.format(formatter);

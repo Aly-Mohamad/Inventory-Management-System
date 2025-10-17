@@ -23,10 +23,12 @@ public class Product implements Record{
         this.quantity = quantity;
     }
 
+    @Override
     public String lineRepresentation() {
         return productID + "," + productName + "," + manufacturerName + "," + supplierName + "," + quantity + "," + price;
     }
 
+    @Override
     public String getSearchKey() {
         return getProductID();
     }
