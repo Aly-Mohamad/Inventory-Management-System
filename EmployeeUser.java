@@ -1,4 +1,4 @@
-public class EmployeeUser {
+public class EmployeeUser implements Record{
     private String employeeId;
     private String Name;
     private String Email;
@@ -14,15 +14,16 @@ public class EmployeeUser {
         this.PhoneNumber = PhoneNumber;
     }
     
-    public String LineRepresentation(){
+    @Override
+    public String lineRepresentation(){
         String line = this.employeeId+","+this.Name+","+this.Email+","+this.Address+","+this.PhoneNumber;
         return line;
     }
     
+    @Override
     public String getSearchKey(){
         return getEmployeeId();
     }
-    
     
     
     public String getEmployeeId() {

@@ -1,16 +1,17 @@
 import java.util.*;
 import java.io.*;
 
-public class EmployeeUserDatabase{
- private ArrayList<EmployeeUser> records;
+public class EmployeeUserDatabase extends Database<EmployeeUser>{
+    private ArrayList<EmployeeUser> records;
     private String filename;
 
     public EmployeeUserDatabase(String filename) {
         this.filename = filename;
         this.records = new ArrayList<>();
-     }
+    }
 
-public void readFromFile() {
+    @Override
+    public void readFromFile() {
         try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
             String line;
             while ((line = reader.readLine()) != null) {
@@ -23,45 +24,56 @@ public void readFromFile() {
             System.out.println("File not found: " + filename);
         } catch (IOException e) {
             System.out.println("Error reading file: " + e.getMessage());
-        }  }
+        }  
+    }
 
- public EmployeeUser createRecordFrom(String line) {
+    @Override
+    public EmployeeUser createRecordFrom(String line) {
         try {
             String[] parts = line.split(",");
             if (parts.length == 5) {
                 return new EmployeeUser(parts[0].trim(), parts[1].trim(), parts[2].trim(), 
-                                      parts[3].trim(), parts[4].trim()); }
+                                    parts[3].trim(), parts[4].trim()); }
         } catch (Exception e) {
             System.out.println("An error occured in reading: " + line);
         }
         return null;
     }
 
-public ArrayList<EmployeeUser> returnAllRecords() {
-        return records; }
+    @Override
+    public ArrayList<EmployeeUser> returnAllRecords() {
+        return records; 
+    }
 
-public boolean contains(String key) {
+    @Override
+    public boolean contains(String key) {
         for (EmployeeUser employee : records) {
             if (employee.getSearchKey().equals(key)) {
                 return true;
-            } }
+            } 
+        }
         return false;
     }
 
-public EmployeeUser getRecord(String key) {
+    @Override
+    public EmployeeUser getRecord(String key) {
         for (EmployeeUser employee : records) {
             if (employee.getSearchKey().equals(key)) {
                 return employee;
-            }}
+            }
+        }
         return null;
     }
 
-public void insertRecord(EmployeeUser record) {
+    @Override
+    public void insertRecord(EmployeeUser record) {
         if (record != null && !contains(record.getSearchKey())) {
             records.add(record);
-        } }
+        }
+    }
 
-public void deleteRecord(String key) {
+    @Override
+    public void deleteRecord(String key) {
         EmployeeUser Remove = null;
         for (EmployeeUser employee : records) {
             if (employee.getSearchKey().equals(key)) {
@@ -71,16 +83,17 @@ public void deleteRecord(String key) {
         }
         if (Remove != null) {
             records.remove(Remove);
-        }}
+        }
+    }
     
-public void saveToFile() {
+    @Override
+    public void saveToFile() {
         try (PrintWriter writer = new PrintWriter(new FileWriter(filename , true))) {
             for (EmployeeUser employee : records) {
-                writer.println(employee.LineRepresentation());
+                writer.println(employee.lineRepresentation());
             }
         } catch (IOException e) {
             System.out.println("Error saving to file: " + e.getMessage());
         }
     }
-
 }

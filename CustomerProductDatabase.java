@@ -8,15 +8,17 @@ import java.util.*;
 import java.time.LocalDate;
 
 
-public class CustomerProductDatabase{
-private ArrayList<CustomerProduct> records;
-private String filename;
+public class CustomerProductDatabase extends Database<CustomerProduct>{
+    private ArrayList<CustomerProduct> records;
+    private String filename;
 
-public CustomerProductDatabase (String filename){
-    this.filename = filename;
-    this.records = new ArrayList<>();
-}
-public void readFromFile() {
+    public CustomerProductDatabase (String filename){
+        this.filename = filename;
+        this.records = new ArrayList<>();
+    }
+
+    @Override
+    public void readFromFile() {
         try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
             String line;
             while ((line = reader.readLine()) != null) {
@@ -29,9 +31,11 @@ public void readFromFile() {
             System.out.println("File not found: " + filename);
         } catch (IOException e) {
             System.out.println("Error reading file: " + e.getMessage());
-        }  }
+        }  
+    }
 
-public CustomerProduct createRecordFrom(String line) {
+    @Override
+    public CustomerProduct createRecordFrom(String line) {
         try {
             String[] parts = line.split(",");
             if (parts.length == 3) {
@@ -43,31 +47,40 @@ public CustomerProduct createRecordFrom(String line) {
         return null;
     }
 
-public ArrayList<CustomerProduct> returnAllRecords() {
-        return records; }
+    @Override
+    public ArrayList<CustomerProduct> returnAllRecords() {
+        return records; 
+    }
 
-public boolean contains(String key) {
+    @Override
+    public boolean contains(String key) {
         for (CustomerProduct customer : records) {
             if (customer.getSearchKey().equals(key)) {
                 return true;
-            } }
+            } 
+        }
         return false;
     }
 
-public CustomerProduct getRecord(String key) {
+    @Override
+    public CustomerProduct getRecord(String key) {
         for (CustomerProduct customer : records) {
             if (customer.getSearchKey().equals(key)) {
                 return customer;
-            }}
+            }
+        }
         return null;
     }
 
-public void insertRecord(CustomerProduct record) {
+    @Override
+    public void insertRecord(CustomerProduct record) {
         if (record != null && !contains(record.getSearchKey())) {
             records.add(record);
-        } }
+        } 
+    }
 
-public void deleteRecord(String key) {
+    @Override
+    public void deleteRecord(String key) {
         CustomerProduct Remove = null;
         for (CustomerProduct customer : records) {
             if (customer.getSearchKey().equals(key)) {
@@ -77,9 +90,11 @@ public void deleteRecord(String key) {
         }
         if (Remove != null) {
             records.remove(Remove);
-        }}
+        }
+    }
 
-public void saveToFile() {
+    @Override
+    public void saveToFile() {
         try (PrintWriter writer = new PrintWriter(new FileWriter(filename , true))) {
             for (CustomerProduct customer : records) {
                 writer.println(customer.lineRepresentation());

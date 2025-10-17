@@ -1,7 +1,7 @@
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-public class CustomerProduct {
+public class CustomerProduct implements Record{
     private String customerSSN;
     private String productID;
     private LocalDate purchaseDate;
@@ -15,11 +15,12 @@ public class CustomerProduct {
         this.paid = false;
     } 
     
-    
+    @Override
     public String lineRepresentation(){
         return getSearchKey() + "," + this.paid;
     }
     
+    @Override
     public String getSearchKey(){
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         return this.customerSSN + "," + this.productID + "," + this.purchaseDate.format(formatter);
