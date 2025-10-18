@@ -2,8 +2,6 @@ import java.util.*;
 import java.io.*;
 
 public class ProductDatabase extends Database<Product>{
-    private ArrayList<Product> records;
-    private String filename;
 
     public ProductDatabase(String filename) {
         this.filename = filename;

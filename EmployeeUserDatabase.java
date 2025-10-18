@@ -2,8 +2,6 @@ import java.util.*;
 import java.io.*;
 
 public class EmployeeUserDatabase extends Database<EmployeeUser>{
-    private ArrayList<EmployeeUser> records;
-    private String filename;
 
     public EmployeeUserDatabase(String filename) {
         this.filename = filename;
@@ -48,7 +46,7 @@ public class EmployeeUserDatabase extends Database<EmployeeUser>{
     
     @Override
     public void saveToFile() {
-        try (PrintWriter writer = new PrintWriter(new FileWriter(filename , true))) {
+        try (PrintWriter writer = new PrintWriter(new FileWriter(filename))) {
             for (EmployeeUser employee : records) {
                 writer.println(employee.lineRepresentation());
             }

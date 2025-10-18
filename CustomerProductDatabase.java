@@ -6,8 +6,6 @@ import java.time.LocalDate;
 
 
 public class CustomerProductDatabase extends Database<CustomerProduct>{
-    private ArrayList<CustomerProduct> records;
-    private String filename;
 
     public CustomerProductDatabase (String filename){
         this.filename = filename;
@@ -51,7 +49,7 @@ public class CustomerProductDatabase extends Database<CustomerProduct>{
 
     @Override
     public void saveToFile() {
-        try (PrintWriter writer = new PrintWriter(new FileWriter(filename , true))) {
+        try (PrintWriter writer = new PrintWriter(new FileWriter(filename))) {
             for (CustomerProduct customer : records) {
                 writer.println(customer.lineRepresentation());
             }
