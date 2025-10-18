@@ -2,29 +2,10 @@ import java.util.*;
 import java.io.*;
 
 public class ProductDatabase extends Database<Product>{
-    private ArrayList<Product> records;
-    private String filename;
 
     public ProductDatabase(String filename) {
         this.filename = filename;
         this.records = new ArrayList<>();
-    }
-
-    @Override
-    public void readFromFile() {
-        try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
-            String line;
-            while ((line = reader.readLine()) != null) {
-                Product product = createRecordFrom(line);
-                if (product != null) {
-                    records.add(product);
-                }
-            }
-        } catch (FileNotFoundException e) {
-            System.out.println("File not found: " + filename);
-        } catch (IOException e) {
-            System.out.println("Error reading file: " + e.getMessage());
-        }
     }
 
     @Override
@@ -47,30 +28,6 @@ public class ProductDatabase extends Database<Product>{
         return null;
     }
 
-    @Override
-    public ArrayList<Product> returnAllRecords() {
-        return records;
-    }
-
-    @Override
-    public boolean contains(String key) {
-        for (Product product : records) {
-            if (product.getSearchKey().equals(key)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    @Override
-    public Product getRecord(String key) {
-        for (Product product : records) {
-            if (product.getSearchKey().equals(key)) {
-                return product;
-            }
-        }
-        return null;
-    }
 
     @Override
     public void insertRecord(Product record) {
