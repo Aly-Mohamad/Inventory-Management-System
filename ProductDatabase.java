@@ -1,5 +1,4 @@
 import java.util.*;
-import java.io.*;
 
 public class ProductDatabase extends Database<Product>{
 
@@ -26,38 +25,5 @@ public class ProductDatabase extends Database<Product>{
             System.out.println("Error reading line: " + line);
         }
         return null;
-    }
-
-
-    @Override
-    public void insertRecord(Product record) {
-        if (record != null && !contains(record.getSearchKey())) {
-            records.add(record);
-        }
-    }
-
-    @Override
-    public void deleteRecord(String key) {
-        Product remove = null;
-        for (Product product : records) {
-            if (product.getSearchKey().equals(key)) {
-                remove = product;
-                break;
-            }
-        }
-        if (remove != null) {
-            records.remove(remove);
-        }
-    }
-
-    @Override
-    public void saveToFile() {
-        try (PrintWriter writer = new PrintWriter(new FileWriter(filename))) {
-            for (Product product : records) {
-                writer.println(product.lineRepresentation());
-            }
-        } catch (IOException e) {
-            System.out.println("Error saving to file: " + e.getMessage());
-        }
     }
 }
