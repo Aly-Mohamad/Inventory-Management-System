@@ -10,22 +10,6 @@ public class EmployeeUserDatabase extends Database<EmployeeUser>{
         this.records = new ArrayList<>();
     }
 
-    @Override
-    public void readFromFile() {
-        try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
-            String line;
-            while ((line = reader.readLine()) != null) {
-                EmployeeUser employee = createRecordFrom(line);
-                if (employee != null) {
-                    records.add(employee);
-                }
-            }
-        } catch (FileNotFoundException e) {
-            System.out.println("File not found: " + filename);
-        } catch (IOException e) {
-            System.out.println("Error reading file: " + e.getMessage());
-        }  
-    }
 
     @Override
     public EmployeeUser createRecordFrom(String line) {
@@ -40,30 +24,6 @@ public class EmployeeUserDatabase extends Database<EmployeeUser>{
         return null;
     }
 
-    @Override
-    public ArrayList<EmployeeUser> returnAllRecords() {
-        return records; 
-    }
-
-    @Override
-    public boolean contains(String key) {
-        for (EmployeeUser employee : records) {
-            if (employee.getSearchKey().equals(key)) {
-                return true;
-            } 
-        }
-        return false;
-    }
-
-    @Override
-    public EmployeeUser getRecord(String key) {
-        for (EmployeeUser employee : records) {
-            if (employee.getSearchKey().equals(key)) {
-                return employee;
-            }
-        }
-        return null;
-    }
 
     @Override
     public void insertRecord(EmployeeUser record) {

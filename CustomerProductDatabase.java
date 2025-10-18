@@ -1,6 +1,3 @@
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -18,23 +15,6 @@ public class CustomerProductDatabase extends Database<CustomerProduct>{
     }
 
     @Override
-    public void readFromFile() {
-        try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
-            String line;
-            while ((line = reader.readLine()) != null) {
-                CustomerProduct customer = createRecordFrom(line);
-                if (customer != null) {
-                    records.add(customer);
-                }
-            }
-        } catch (FileNotFoundException e) {
-            System.out.println("File not found: " + filename);
-        } catch (IOException e) {
-            System.out.println("Error reading file: " + e.getMessage());
-        }  
-    }
-
-    @Override
     public CustomerProduct createRecordFrom(String line) {
         try {
             String[] parts = line.split(",");
@@ -47,30 +27,6 @@ public class CustomerProductDatabase extends Database<CustomerProduct>{
         return null;
     }
 
-    @Override
-    public ArrayList<CustomerProduct> returnAllRecords() {
-        return records; 
-    }
-
-    @Override
-    public boolean contains(String key) {
-        for (CustomerProduct customer : records) {
-            if (customer.getSearchKey().equals(key)) {
-                return true;
-            } 
-        }
-        return false;
-    }
-
-    @Override
-    public CustomerProduct getRecord(String key) {
-        for (CustomerProduct customer : records) {
-            if (customer.getSearchKey().equals(key)) {
-                return customer;
-            }
-        }
-        return null;
-    }
 
     @Override
     public void insertRecord(CustomerProduct record) {
