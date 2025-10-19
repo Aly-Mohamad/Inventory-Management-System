@@ -6,6 +6,7 @@ public class Product implements Record{
     private int quantity;
     private float price;
 
+    //Constructor
     public Product(String productID, String productName, String manufacturerName, String supplierName, int quantity, float price) {
         this.productID = productID;
         this.productName = productName;
@@ -15,6 +16,7 @@ public class Product implements Record{
         this.price = price;
     }
 
+    //Setters and Getters
     public int getQuantity() {
         return quantity;
     }
@@ -23,16 +25,7 @@ public class Product implements Record{
         this.quantity = quantity;
     }
 
-    @Override
-    public String lineRepresentation() {
-        return productID + "," + productName + "," + manufacturerName + "," + supplierName + "," + quantity + "," + price;
-    }
-
-    @Override
-    public String getSearchKey() {
-        return getProductID();
-    }
-
+    
     public String getProductID() {
         return productID;
     }
@@ -62,6 +55,16 @@ public class Product implements Record{
     }
     public void setPrice(float price) {
         this.price = price;
+    }
+
+    @Override
+    public String lineRepresentation() {
+        return productID + "," + productName + "," + manufacturerName + "," + supplierName + "," + quantity + "," + price;
+    }
+    
+    @Override
+    public String getSearchKey() {
+        return getProductID();
     }
 }
 

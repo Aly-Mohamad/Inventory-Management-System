@@ -5,6 +5,7 @@ public class EmployeeUser implements Record{
     private String Address;
     private String PhoneNumber;
     
+    //Constructor
     
     public EmployeeUser(String employeeId, String Name, String Email, String Address, String PhoneNumber){
         this.employeeId = employeeId;
@@ -24,7 +25,8 @@ public class EmployeeUser implements Record{
         return getEmployeeId();
     }
     
-    
+    // Setters and getters
+
     public String getEmployeeId() {
         return employeeId;
     }
