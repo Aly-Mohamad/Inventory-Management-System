@@ -30,6 +30,12 @@ public class EmployeeRole implements Role{
         this.customerProductDatabase = customerProductDatabase;
     }
 
+    public void addProduct(String productId,String productName,String manufacturerName,String supplierName,int quantity) {
+        float defaultPrice = 300.0f;
+        Product product = new Product(productId, productName, manufacturerName, supplierName, quantity, defaultPrice);
+        productDatabase.insertRecord(product);
+    }
+
     public void addProduct(String productId,String productName,String manufacturerName,String supplierName,int quantity,float price) {
         Product product = new Product(productId, productName, manufacturerName, supplierName, quantity, price);
         productDatabase.insertRecord(product);
