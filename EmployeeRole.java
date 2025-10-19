@@ -6,6 +6,7 @@ public class EmployeeRole implements Role{
     private ProductDatabase productDatabase;
     private CustomerProductDatabase customerProductDatabase;
 
+    //Constructon
     public EmployeeRole(){
         productDatabase = new ProductDatabase("Product.txt");
         productDatabase.readFromFile();
@@ -13,7 +14,7 @@ public class EmployeeRole implements Role{
         customerProductDatabase.readFromFile();
     }
 
-
+    //Setters and Getters
     public ProductDatabase getProductDatabase() {
         return productDatabase;
     }
@@ -54,11 +55,15 @@ public class EmployeeRole implements Role{
     }
 
     public boolean purchaseProduct(String customerSSN,String productId,LocalDate purchaseDate) {
-        int quantity = productDatabase.getRecord(productId).getQuantity();
+        Product product = productDatabase.getRecord(productId);
+        if (product == null) {
+            return false;
+        }
+        int quantity = product.getQuantity();
         if (quantity == 0){
             return false;
         }
-        productDatabase.getRecord(productId).setQuantity(quantity - 1);
+        product.setQuantity(quantity - 1);
         customerProductDatabase.insertRecord(new CustomerProduct(customerSSN, productId, purchaseDate));
         return true;
     }
@@ -74,27 +79,35 @@ public class EmployeeRole implements Role{
             canReturn = false;
         }
         if(canReturn){
-            productDatabase.getRecord(productId).setQuantity(productDatabase.getRecord(productId).getQuantity() + 1);
-            float price = productDatabase.getRecord(productId).getPrice();
-            customerProductDatabase.deleteRecord(customerSSN + "," + productId + "," + purchaseDate.format(DateTimeFormatter.ofPattern("dd-MM-yyyy")));
-           //productDatabase.saveToFile();
-            return price;
+            Product product = productDatabase.getRecord(productId);
+            if (product != null) {
+                product.setQuantity(product.getQuantity() + 1);
+                float price = product.getPrice();
+                customerProductDatabase.deleteRecord(customerSSN + "," + productId + "," + purchaseDate.format(DateTimeFormatter.ofPattern("dd-MM-yyyy")));
+                return price;
+            }
         }
         return -1;
     }
+
 
     public boolean applyPayment(String customerSSN,LocalDate purchaseDate) {
         CustomerProduct [] customerProducts = this.getListOfPurchasingOperations();
         for(CustomerProduct customerProduct : customerProducts){
             if(customerProduct.getCustomerSSN().equals(customerSSN) && customerProduct.getPurchaseDate().equals(purchaseDate)){
-                customerProduct.setPaid(true);
-                customerProductDatabase.saveToFile();
-                return true;
+                String searchKey = customerProduct.getSearchKey();
+                CustomerProduct record = customerProductDatabase.getRecord(searchKey);
+                if (record != null) {
+                    record.setPaid(true);
+                    customerProductDatabase.saveToFile();
+                    return true;
+                }
             }
         }
         return false;
     }
 
+    
     @Override
     public void logout(){
         productDatabase.saveToFile();

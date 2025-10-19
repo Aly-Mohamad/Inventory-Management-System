@@ -10,6 +10,7 @@ public abstract class Database<T extends Record> {
     protected ArrayList<T> records;
     protected String filename;
 
+    //Reading from file
     public void readFromFile(){
         try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
             String line;
@@ -70,7 +71,7 @@ public abstract class Database<T extends Record> {
     }
 
     public void saveToFile(){
-        try (PrintWriter writer = new PrintWriter(new FileWriter(filename , true))) {
+        try (PrintWriter writer = new PrintWriter(new FileWriter(filename))){
             for (T job : records) {
                 writer.println(job.lineRepresentation());
             }

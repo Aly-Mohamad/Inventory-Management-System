@@ -2,12 +2,13 @@ import java.util.*;
 
 public class EmployeeUserDatabase extends Database<EmployeeUser>{
 
+    //Constructor
     public EmployeeUserDatabase(String filename) {
         this.filename = filename;
         this.records = new ArrayList<>();
     }
 
-
+    //Creating Employee Users Database
     @Override
     public EmployeeUser createRecordFrom(String line) {
         try {

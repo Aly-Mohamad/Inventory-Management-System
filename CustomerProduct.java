@@ -7,7 +7,7 @@ public class CustomerProduct implements Record{
     private LocalDate purchaseDate;
     private boolean paid;
     
-    
+    //Constructor
     public CustomerProduct(String customerSSN, String productID, LocalDate purchaseDate){
         this.customerSSN = customerSSN;
         this.productID = productID;
@@ -26,7 +26,8 @@ public class CustomerProduct implements Record{
         return this.customerSSN + "," + this.productID + "," + this.purchaseDate.format(formatter);
     }
     
-    
+    //Setters and Getters
+
     public String getCustomerSSN() {
         return customerSSN;
     }

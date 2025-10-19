@@ -1,1 +1,8 @@
+EMP-001,Ahmed,ahmed@email.com,123 Street Cairo,+20123456789
+EMP-002,Mohamed,mohamed@email.com,456 Boulevard Giza,+20198765432
+EMP-003,Mariam,mariam@email.com,789 Avenue Alexandria,+20145678923
+EMP-004,Hossam,hossam@email.com,101 Lane Luxor,+20132165498
+EMP-005,Nour,nour@email.com,202 Drive Aswan,+20165432178
 E1200,Ahmed,ahmed_1999@gmail.com,Alexandria,01088877345
+E1202,aly,aly@gmail.com,alex,01122534455
+E1203,john,john@gmail.com,loran,013422334455
