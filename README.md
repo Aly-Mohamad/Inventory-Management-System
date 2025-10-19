@@ -225,7 +225,6 @@ The system has been thoroughly tested and all functionality is working correctly
 
 ---
 
-**Author**: [Your Name]  
+**Author**: Youssef Mohamed,Aly Mohamed, Hoda Hany, Ahmed El-Mitwally  
 **Course**: Programming 2  
 **Lab**: Lab 4 - Inventory Management System  
-**Date**: [Current Date]
