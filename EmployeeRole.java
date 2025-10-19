@@ -71,7 +71,7 @@ public class EmployeeRole implements Role{
             productDatabase.getRecord(productId).setQuantity(productDatabase.getRecord(productId).getQuantity() + 1);
             float price = productDatabase.getRecord(productId).getPrice();
             customerProductDatabase.deleteRecord(customerSSN + "," + productId + "," + purchaseDate.format(DateTimeFormatter.ofPattern("dd-MM-yyyy")));
-            productDatabase.saveToFile();
+           //productDatabase.saveToFile();
             return price;
         }
         return -1;

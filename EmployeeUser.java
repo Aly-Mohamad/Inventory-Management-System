@@ -16,8 +16,7 @@ public class EmployeeUser implements Record{
     
     @Override
     public String lineRepresentation(){
-        String line = this.employeeId+","+this.Name+","+this.Email+","+this.Address+","+this.PhoneNumber;
-        return line;
+        return this.employeeId+","+this.Name+","+this.Email+","+this.Address+","+this.PhoneNumber;     
     }
     
     @Override

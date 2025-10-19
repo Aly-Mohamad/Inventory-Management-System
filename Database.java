@@ -14,9 +14,9 @@ public abstract class Database<T extends Record> {
         try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
             String line;
             while ((line = reader.readLine()) != null) {
-                T x = createRecordFrom(line);
-                if (x != null) {
-                    records.add(x);
+                T job = createRecordFrom(line);
+                if (job != null) {
+                    records.add(job);
                 }
             }
         } catch (FileNotFoundException e) {
@@ -33,8 +33,8 @@ public abstract class Database<T extends Record> {
     }
 
     public boolean contains(String key){
-        for (T x : records) {
-            if (x.getSearchKey().equals(key)) {
+        for (T job : records) {
+            if (job.getSearchKey().equals(key)) {
                 return true;
             }
         }
@@ -42,9 +42,9 @@ public abstract class Database<T extends Record> {
     }
 
     public T getRecord(String key){
-        for (T x : records) {
-            if (x.getSearchKey().equals(key)) {
-                return x;
+        for (T job : records) {
+            if (job.getSearchKey().equals(key)) {
+                return job;
             }
         }
         return null;
@@ -58,9 +58,9 @@ public abstract class Database<T extends Record> {
 
     public void deleteRecord(String key){
      T Remove = null;
-        for (T x : records) {
-            if (x.getSearchKey().equals(key)) {
-                Remove = x;
+        for (T job : records) {
+            if (job.getSearchKey().equals(key)) {
+                Remove = job;
                 break;
             }
         }
@@ -70,9 +70,9 @@ public abstract class Database<T extends Record> {
     }
 
     public void saveToFile(){
-        try (PrintWriter writer = new PrintWriter(new FileWriter(filename))) {
-            for (T x : records) {
-                writer.println(x.lineRepresentation());
+        try (PrintWriter writer = new PrintWriter(new FileWriter(filename , true))) {
+            for (T job : records) {
+                writer.println(job.lineRepresentation());
             }
         } catch (IOException e) {
             System.out.println("Error saving to file: " + e.getMessage());
