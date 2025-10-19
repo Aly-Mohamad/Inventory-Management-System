@@ -4,5 +4,4 @@ SMT-002,Samsung Galaxy S22,Samsung,Amazon,3,1200.0
 GMC-003,PlayStation 5,Sony,GameStop,4,500.0
 SPK-004,Google Nest Audio,Google,Walmart,0,200.0
 WTCH-005,Fitbit Versa 3,Fitbit,Target,2,150.0
-P2396,tv,LG,MobileWorld,2,1000.0
-P2397,headphones,Samsung,MobileWorld,11,300.0
+
