@@ -2,11 +2,13 @@ import java.util.*;
 
 public class ProductDatabase extends Database<Product>{
 
+    //Constructor
     public ProductDatabase(String filename) {
         this.filename = filename;
         this.records = new ArrayList<>();
     }
 
+    //Creating Products Database
     @Override
     public Product createRecordFrom(String line) {
         try {
